@@ -1,0 +1,377 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: url("bg.jpg") center/cover no-repeat fixed;
+  color: #fff;
+  font-family: "Cinzel", serif;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 34px;
+  color: #ff5252;
+  margin: 0;
+}
+
+.subtitle {
+  color: #bbb;
+  margin: 8px 0 24px;
+}
+
+.wheel-container {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 24px;
+}
+
+.pointer {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff5252;
+  font-size: 28px;
+  z-index: 3;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    #b71c1c 0deg 60deg,
+    #222 60deg 120deg,
+    #b71c1c 120deg 180deg,
+    #222 180deg 240deg,
+    #b71c1c 240deg 300deg,
+    #222 300deg 360deg
+  );
+  border: 6px solid #ff5252;
+  box-shadow: 0 0 25px rgba(183, 28, 28, .7);
+  transition: transform 3.5s cubic-bezier(.17, .67, .21, .99);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-center {
+  background: #000;
+  border: 2px solid #ff5252;
+  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff5252;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font-size: 15px;
+  color: white;
+}
+
+.spin-btn {
+  background: #b71c1c;
+  margin-bottom: 18px;
+}
+
+.spin-btn:disabled {
+  opacity: .6;
+}
+
+.accept-btn {
+  background: #b71c1c;
+}
+
+.quit-btn {
+  background: #444;
+}
+
+.result-area {
+  margin-top: 16px;
+  display: none;
+}
+
+.result-card {
+  background: #111;
+  border: 1px solid #b71c1c;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.result-icon {
+  font-size: 34px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.history-area {
+  margin-top: 26px;
+  text-align: left;
+}
+
+.history-area ul {
+  list-style: none;
+  padding: 0;
+}
+
+.history-area li {
+  background: #111;
+  border-left: 3px solid #b71c1c;
+  margin: 6px 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.contract-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .78);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.contract-overlay.show {
+  display: flex;
+}
+
+.contract-box {
+  background: #111;
+  color: #f1f1f1;
+  border: 2px solid #b71c1c;
+  box-shadow: 0 0 25px rgba(183, 28, 28, .7);
+  padding: 24px 20px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 320px;
+  width: 86%;
+  animation: popIn .25s ease;
+}
+
+.contract-box h2 {
+  margin: 0 0 10px;
+  color: #ff5252;
+}
+
+.contract-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.contract-actions button {
+  background: #b71c1c;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.contract-actions button:hover {
+  background: #d32f2f;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  from { transform: scale(.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* ========== 恶魔氛围动画 ========== */
+
+body {
+  animation: bgPulse 6s ease-in-out infinite;
+}
+
+@keyframes bgPulse {
+  0%, 100% {
+    box-shadow: inset 0 0 80px rgba(120, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: inset 0 0 140px rgba(180, 0, 0, 0.45);
+  }
+}
+
+/* 按钮悬浮发光 */
+button,
+.btn,
+#startBtn,
+.accept-btn,
+.reject-btn,
+[onclick] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+button:hover,
+.btn:hover,
+#startBtn:hover,
+.accept-btn:hover,
+.reject-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 18px rgba(255, 40, 80, 0.65),
+              0 0 38px rgba(120, 0, 0, 0.45);
+  filter: brightness(1.15);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* 转盘旋转动画，由 JS 控制 class 更稳 */
+.wheel,
+#wheel {
+  transition: transform 4s cubic-bezier(0.17, 0.67, 0.21, 0.99);
+  will-change: transform;
+  filter: drop-shadow(0 0 18px rgba(255, 30, 60, 0.55));
+}
+
+.spinning {
+  animation: wheelGlow 0.8s linear infinite;
+}
+
+@keyframes wheelGlow {
+  0% {
+    filter: drop-shadow(0 0 12px rgba(255, 30, 60, 0.55));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(255, 80, 120, 0.85));
+  }
+  100% {
+    filter: drop-shadow(0 0 12px rgba(255, 30, 60, 0.55));
+  }
+}
+
+/* 结果弹窗/卡片出现动画 */
+.result,
+#result,
+.contract-overlay,
+#contractOverlay {
+  animation: riseIn 0.45s ease-out;
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.92);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 结果高亮闪一下 */
+.result.show,
+#result.show {
+  animation: resultPop 0.6s ease-out;
+}
+
+@keyframes resultPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-3deg);
+    box-shadow: 0 0 0 rgba(255, 0, 60, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08) rotate(1deg);
+    box-shadow: 0 0 40px rgba(255, 0, 60, 0.75);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    box-shadow: 0 0 18px rgba(255, 0, 60, 0.35);
+  }
+}
+
+/* 签约弹层显示 */
+.contract-overlay.show,
+#contractOverlay.show {
+  animation: overlayIn 0.35s ease-out;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(6px);
+  }
+}
+
+/* 页面震动：JS 可临时加 .shake */
+.shake {
+  animation: shake 0.45s cubic-bezier(.36,.07,.19,.97);
+}
+
+@keyframes shake {
+  0%,100% { transform: translate(0,0); }
+  20% { transform: translate(-6px, 3px); }
+  40% { transform: translate(7px, -2px); }
+  60% { transform: translate(-5px, -4px); }
+  80% { transform: translate(4px, 5px); }
+}
+
+/* 图标/emoji 轻微浮动 */
+.icon, .level {
+  display: inline-block;
+  animation: floatIcon 2.4s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* 手机适配，防止太小 */
+@media (max-width: 600px) {
+  .wheel, #wheel {
+    width: 78vw;
+    height: 78vw;
+    max-width: 360px;
+    max-height: 360px;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  button, .btn {
+    padding: 12px 18px;
+  }
+}
